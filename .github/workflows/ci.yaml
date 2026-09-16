@@ -6,7 +6,11 @@ on:
 
 jobs:
   yahyastester:
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        java: [17,21]
 
     services:
       mysql:
@@ -28,10 +32,10 @@ jobs:
       - name: Checka ut koden
         uses: actions/checkout@v4
 
-      - name: Sätt upp java
+      - name: Sätt upp java matrix
         uses: actions/setup-java@v4
         with:
-          java-version: "17"
+          java-version: ${{matrix.java}}
           distribution: "temurin"
           cache: "maven"
 
