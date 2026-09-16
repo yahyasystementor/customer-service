@@ -4,10 +4,14 @@ on:
   push:
      branches: [master]
 
+#  schedule:
+ #   - cron: "0 3 * * *" #Varje natt kl 03
+
 jobs:
   yahyastester:
     runs-on: ${{ matrix.os }}
     strategy:
+    #  fail-fast: false
       matrix:
         os: [ubuntu-latest]
         java: [17,21]
@@ -28,7 +32,19 @@ jobs:
           --health-retries=10
 
 
+
+
     steps:
+      - name: Starta hela systemet
+        run: docker compose up -d --build
+
+      - name: vänta på att allt ska startas
+        run: sleep 30
+
+      - name: test mot vår endpoint i customer-service
+        run: curl -f http://localhost:8080/customer/1
+
+
       - name: Checka ut koden
         uses: actions/checkout@v4
 
@@ -40,8 +56,13 @@ jobs:
           cache: "maven"
 
       - name: bygg och kör tester
-        run: mvn -B package
+        run: mvn test
 
+
+
+      - name: stänga ner allt
+        if: always()
+        run: docker compose down -v
 
 
 
