@@ -40,6 +40,7 @@ jobs:
 
 
 
+
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://customer-db:3306/customerdb
           SPRING_DATASOURCE_USERNAME: root
