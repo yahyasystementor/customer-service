@@ -49,7 +49,7 @@ jobs:
 
       - name: Bygg image
         run: |
-          docker build -t yahyasystementor/customer-service:2.0
+          docker build -t yahyasystementor/customer-service:2.0 .
 
       - name: Pusha till dockerhub
         run: |
