@@ -9,12 +9,7 @@ on:
 
 jobs:
   yahyastester:
-    runs-on: ${{ matrix.os }}
-    strategy:
-    #  fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-        java: [17,21]
+    runs-on: ubuntu-latest
 
     services:
       mysql:
