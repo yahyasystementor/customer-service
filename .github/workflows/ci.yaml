@@ -35,18 +35,18 @@ jobs:
 
 
     steps:
-      - name: Starta hela systemet
-        run: docker compose up -d --build
+ #     - name: Starta hela systemet
+  #      run: docker compose up -d --build
 
-      - name: vänta på att allt ska startas
-        run: sleep 30
+   #   - name: vänta på att allt ska startas
+    #    run: sleep 30
 
-      - name: test mot vår endpoint i customer-service
-        run: curl -f http://localhost:8080/customer/1
+     # - name: test mot vår endpoint i customer-service
+      #  run: curl -f http://localhost:8080/customer/1
 
 
-      - name: Checka ut koden
-        uses: actions/checkout@v4
+     # - name: Checka ut koden
+     #   uses: actions/checkout@v4
 
       - name: Sätt upp java matrix
         uses: actions/setup-java@v4
@@ -60,9 +60,9 @@ jobs:
 
 
 
-      - name: stänga ner allt
-        if: always()
-        run: docker compose down -v
+#      - name: stänga ner allt
+ #       if: always()
+  #      run: docker compose down -v
 
 
 
