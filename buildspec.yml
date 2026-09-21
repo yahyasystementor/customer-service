@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  pre_build:
+    command:
+      - echo Entered prebuild phase
+
+  build:
+    command:
+      - echo Build started on
+      - mvn clean package -DskipTests
+      - dir target
+
+  post_build:
+    command:
+      - echo Build compeleted
+
+
+artifacts:
+  files:
+    - target/customer-service-0.0.1-SNAPSHOT.jar
