@@ -40,8 +40,8 @@ jobs:
       #  run: curl -f http://localhost:8080/customer/1
 
 
-     # - name: Checka ut koden
-     #   uses: actions/checkout@v4
+      - name: Checka ut koden
+        uses: actions/checkout@v4
 
       - name: Sätt upp java matrix
         uses: actions/setup-java@v4
