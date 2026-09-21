@@ -3,8 +3,11 @@ name: ci with integrationtests
 on:
   push:
      branches: [master]
+  pull_request:
+    branches: [master]
 
-#  schedule:
+
+  #  schedule:
  #   - cron: "0 3 * * *" #Varje natt kl 03
 
 jobs:
@@ -44,6 +47,7 @@ jobs:
 
 
       - name: Logga in på dockerhub
+        if: github.event_name == 'push'
         run: echo "${{secrets.DOCKERHUB_TOKEN}}" | docker login -u "yahyasystementor" --password-stdin
 
 
