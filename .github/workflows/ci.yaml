@@ -46,7 +46,7 @@ jobs:
       - name: Sätt upp java matrix
         uses: actions/setup-java@v4
         with:
-          java-version: ${{matrix.java}}
+          java-version: "17"
           distribution: "temurin"
           cache: "maven"
 
