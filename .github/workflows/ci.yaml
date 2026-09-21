@@ -42,9 +42,6 @@ jobs:
       - name: bygg och kör tester
         run: mvn test
 
-      - name: bygg
-        run: mvn -B package -DskipTests
-
       - name: Logga in på dockerhub
         run: echo "${{secrets.DOCKERHUB_TOKEN}}" | docker login -u "yahyasystementor" --password-stdin
 
@@ -56,8 +53,8 @@ jobs:
       - name: Pusha till dockerhub
         run: |
           docker push yahyasystementor/customer-service:2.0
-          
-          
+
+
 
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/customerdb
