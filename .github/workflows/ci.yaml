@@ -53,7 +53,7 @@ jobs:
 
       - name: Pusha till dockerhub
         run: |
-          docker push yahyasystementor/customer-service:2.0
+          docker push yahyasystementor/customer-service:${{github.run_number}}
 
 
 
