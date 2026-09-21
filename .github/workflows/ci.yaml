@@ -46,7 +46,7 @@ jobs:
         run: mvn -B package -DskipTests
 
       - name: Logga in på dockerhub
-        run: echo "dckr_pat_jJtau7-z6vlg2NP4_JuqdzCyZXo" | docker login -u "yahyasystementor" --password-stdin
+        run: echo "${{secrets.DOCKERHUB_TOKEN}}" | docker login -u "yahyasystementor" --password-stdin
 
 
       - name: Bygg image
