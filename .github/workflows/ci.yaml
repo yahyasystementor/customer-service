@@ -27,18 +27,7 @@ jobs:
           --health-retries=10
 
 
-
-
     steps:
- #     - name: Starta hela systemet
-  #      run: docker compose up -d --build
-
-   #   - name: vänta på att allt ska startas
-    #    run: sleep 30
-
-     # - name: test mot vår endpoint i customer-service
-      #  run: curl -f http://localhost:8080/customer/1
-
 
       - name: Checka ut koden
         uses: actions/checkout@v4
@@ -53,13 +42,22 @@ jobs:
       - name: bygg och kör tester
         run: mvn test
 
+      - name: bygg
+        run: mvn -B package -DskipTests
+
+      - name: Logga in på dockerhub
+        run: echo "dckr_pat_jJtau7-z6vlg2NP4_JuqdzCyZXo" | docker login -u "yahyasystementor" --password-stdin
 
 
-#      - name: stänga ner allt
- #       if: always()
-  #      run: docker compose down -v
+      - name: Bygg image
+        run: |
+          docker build -t yahyasystementor/customer-service:2.0
 
-
+      - name: Pusha till dockerhub
+        run: |
+          docker push yahyasystementor/customer-service:2.0
+          
+          
 
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/${{secrets.DATABASE_NAME}}
