@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 @Entity
 public class Customer {
 
+
+    // Testing CI
     @Id
     private Long id;
     private String name;
